@@ -1,0 +1,18 @@
+services:
+    database:
+        platform: linux/amd64
+        image: mysql:8.0.25
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mysql_data:/var/lib/mysql
+            - ./mysql_init:/docker-entrypoint-initdb.d
+        environment:
+            MYSQL_ROOT_USER: root
+            MYSQL_ROOT_PASSWORD: 123
+            MYSQL_ROOT_HOST: '%'
+        networks:
+            app_network:
+              {}
+networks:
+    app_network:
